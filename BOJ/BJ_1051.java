@@ -22,14 +22,14 @@ public class BJ_1051 {
 			}
 		}
 		
-		int max = 1;
-		for(int i=0;i<N;i++) {
-			for(int j=0;j<M;j++) {
-				for(int n=j+1;n<M;n++) {
+		int len = 1;
+		for(int i=0;i<N-len;i++) {
+			for(int j=0;j<M-len;j++) {
+				for(int n=j+len;n<M;n++) {
 					if(map[i][j]==map[i][n]) {
 						if(i+n-j<N && map[i][j]==map[i+(n-j)][j]) {
 							if(map[i][j]==map[i+(n-j)][n]) {
-								max = Math.max(max, (n-j+1)*(n-j+1));
+								len = Math.max(len, (n-j+1));
 							}
 						}
 					}
@@ -37,6 +37,7 @@ public class BJ_1051 {
 			}
 		}
 		
+		int max = len*len;
 		StringBuilder sb = new StringBuilder();
 		sb.append(max);
 		System.out.println(sb);
